@@ -1,6 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, removeContact, setFilter } from 'redux/actions';
+import {
+  addContactAsync,
+  deleteContactAsync,
+  fetchContactsAsync,
+} from 'redux/actions';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
@@ -13,15 +17,15 @@ export function App() {
   const filter = useSelector(state => state.contacts.filter);
 
   const addContactHandler = contact => {
-    dispatch(addContact(contact));
+    dispatch(addContactAsync(contact));
   };
 
   const deleteContactHandler = contactId => {
-    dispatch(removeContact(contactId));
+    dispatch(deleteContactAsync(contactId));
   };
 
   const handleFilterChange = filterValue => {
-    dispatch(setFilter(filterValue));
+    dispatch(fetchContactsAsync(filterValue));
   };
 
   return (
